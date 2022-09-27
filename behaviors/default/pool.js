@@ -24,7 +24,7 @@ class PoolPawn {
     constructPool(){
         const THREE = Microverse.THREE;
         return Promise.all([
-            import("./assets/src/WaterReflector.js"),
+            import("../assets/src/WaterReflector.js"),
         ]).then(([water_S]) => {
             let waterNormals = this.loadTextureAsset("./assets/images/waternormals.jpg");
             let size = this.actor._cardData.poolSize;
