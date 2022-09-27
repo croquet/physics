@@ -19,9 +19,21 @@ export function init(Constants) {
         }
     */
 
+    // rotates an object around a center point.
+    function rotateTo(center, length, angle){
+        let pos = [];
+        pos.push(length*Math.sin(angle));
+        pos.push(0);
+        pos.push(length*Math.cos(angle));
+        pos[0]+=center[0];
+        pos[1]=center[1];
+        pos[2]+=center[2];
+        return pos;
+    }
+
     Constants.UserBehaviorDirectory = "behaviors/default";
     Constants.UserBehaviorModules = [
-        "lights.js", "cascade.js", "earth.js", "gridBlock.js", "gridSphere.js", "pool.js", "spin.js"
+        "lights.js", "cascade.js", "earth.js", "gridBlock.js", "gridSphere.js", "pool.js", "spin.js", "urlLink.js", "replaceWorld.js"
     ];
     Constants.UseRapier = true;
     Constants.DefaultCards = [
@@ -190,6 +202,7 @@ export function init(Constants) {
         },
         {
             card:{
+                name:"simple tree",
                 translation: [10, 1.3, -15],    
                 rotation: [0, -0.01904446484351159, 0, 0.9998186377332763],    
                 layers: ["walk", "pointer"],    
@@ -204,6 +217,89 @@ export function init(Constants) {
                 flatten: true
             }
         },
+        {
+            card: {
+                name: "Croquet Card",
+                //behaviorModules: ["ReplaceWorld"],
+                //targetURL: "https://croquet.io/microverse/?world=test",
+                translation: rotateTo([0, 0, 0], -12, Math.PI/2),
+                rotation: [0, Math.PI / 2, 0],
+                layers: ["pointer"],
+                scale: [4, 4, 4],
+                type: "2d",
+                textureType: "image",
+                textureLocation: "./assets/images/CroquetLogo_RGB.jpg",
+                cardURL: "https://croquet.io",
+                behaviorModules: ["URLLink"],
+                fullBright: true,
+                frameColor: 0xcccccc,
+                color: 0xffffff,
+                cornerRadius: 0.05,
+                depth: 0.05,
+                shadow: true,
+            }
+        },
 
+        {
+            card: {
+                name: "Gallery Card",
+                behaviorModules: ["ReplaceWorld"],
+                targetURL: "https://croquet.io/microverse",
+                translation: rotateTo([0, 0, 0], -12, Math.PI/8+Math.PI/2), 
+                //    translation: [4.440892098500626e-16, 2.5357677795120512, -7.9631457611584615],
+                //rotation: [0, Math.PI / 2, 0],
+                rotation: [0, Math.PI/8+Math.PI/2, 0],
+                layers: ["pointer"],
+                scale: [4, 4, 4],
+                type: "2d",
+                textureType: "image",
+                textureLocation: "./assets/images/Croquet Gallery.png",
+                fullBright: true,
+                frameColor: 0xcccccc,
+                color: 0xffffff,
+                cornerRadius: 0.05,
+                depth: 0.05,
+                shadow: true,
+            }
+        },
+        {
+            card: {
+                name: "Mythos Card",
+                translation: rotateTo([0, 0, 0], -12, 2*Math.PI/8+Math.PI/2), 
+                behaviorModules: ["ReplaceWorld"],
+                targetURL: "https://croquet.io/microverse/?world=test",
+                rotation: [0, 2*Math.PI/8+Math.PI/2, 0],
+                layers: ["pointer"],
+                scale: [4, 4, 4],
+                type: "2d",
+                textureType: "image",
+                textureLocation: "./assets/images/Croquet Mythos.png",
+                fullBright: true,
+                frameColor: 0xcccccc,
+                color: 0xffffff,
+                cornerRadius: 0.05,
+                depth: 0.05,
+                shadow: true,
+            }
+        },
+        {
+            card: {
+                name: "About Physics",
+                translation: rotateTo([0, 0, 0], -12, 3*Math.PI/8+Math.PI/2), //[-5, 2.1, -7.963],
+                scale: [4, 4, 4],
+                rotation: [0, 3*Math.PI/8+Math.PI/2, 0],
+                layers: ["pointer"],
+                behaviorModules: ["PDFView"],
+                color: 8947848,
+                depth: 0.05,
+                frameColor: 16777215,
+                fullBright: true,
+                modelType: "pdf",
+                pdfLocation: "./assets/PDF/Mythos Readme.pdf",
+                shadow: true,
+                singleSided: true,
+                type: "2d",
+            }
+        },
     ];
 }

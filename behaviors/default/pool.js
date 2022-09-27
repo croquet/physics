@@ -64,7 +64,7 @@ class PoolPawn {
         }
 
     updatePool(t){
-        if(this.water)this.water.material.uniforms[ 'time' ].value = t*0.0001;
+        if(this.water && this.water.material)this.water.material.uniforms[ 'time' ].value = t*0.0001;
     }
 }
 
