@@ -267,7 +267,7 @@ export function init(Constants) {
                 name: "Mythos Card",
                 translation: rotateTo([0, 0, 0], -12, 2*Math.PI/8+Math.PI/2), 
                 behaviorModules: ["ReplaceWorld"],
-                targetURL: "https://croquet.io/microverse/?world=test",
+                targetURL: "https://croquet.github.io/mythos",
                 rotation: [0, 2*Math.PI/8+Math.PI/2, 0],
                 layers: ["pointer"],
                 scale: [4, 4, 4],
