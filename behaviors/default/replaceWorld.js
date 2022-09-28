@@ -4,7 +4,8 @@
 
 class ReplaceWorldPawn {
 
-    get targetURL() { return this.actor._cardData.targetURL; }
+    get targetURL() { return this.actor._cardData.replaceWorldTargetURL; }
+    get overrideOrigin() { return this.actor._cardData.replaceWorldOverrideOrigin; }
 
     setup() {
         this.addEventListener("pointerDown", "onPointerDown");
@@ -43,6 +44,19 @@ class ReplaceWorldPawn {
         }
         for (const setting of [ "showSettings", "voiceChat" ]) {
             if (our.searchParams.has(setting)) targetSearchParams.set(setting, "true");
+        }
+        // allow overriding the origin if we are running there
+        if (this.overrideOrigin && new RegExp(this.overrideOrigin).test(location.origin)) {
+            // use our own origin as target origin
+            target.protocol = location.protocol;
+            target.host = location.host;
+            // append target path to ours. this is designed to work both on /dev/ and /
+            const targetPath = target.pathname.split("/"); // ["", "dir", "to", "target", "x.html"]
+            targetPath.shift(); // ["dir", "to", "target", "x.html"]
+            const ourPath = location.pathname.split("/"); // ["", "dev", "myapp", "y.html"]
+            ourPath.splice(-2); // ["", "dev"]
+            ourPath.push(...targetPath); // ["", "dev", "dir", "to", "target", "x.html"]
+            target.pathname = ourPath.join("/"); // "/dev/dir/to/target/x.html"
         }
         // remove origin from targetURL if it is the same as the target URL
         // we could also construct an even shorter relative URL, but this is easier
