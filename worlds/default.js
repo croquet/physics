@@ -33,7 +33,8 @@ export function init(Constants) {
 
     Constants.UserBehaviorDirectory = "behaviors/default";
     Constants.UserBehaviorModules = [
-        "lights.js", "cascade.js", "earth.js", "gridBlock.js", "gridSphere.js", "pool.js", "spin.js", "urlLink.js", "replaceWorld.js"
+        "lights.js", "cascade.js", "earth.js", "gridBlock.js", "gridSphere.js", "pool.js", "spin.js", 
+        "urlLink.js", "replaceWorld.js", "menus.js"
     ];
     Constants.UseRapier = true;
     Constants.DefaultCards = [
@@ -49,6 +50,7 @@ export function init(Constants) {
                 placeholderSize: [400, 0.1, 400],
                 placeholderColor: 0x808080,
                 placeholderOffset: [0, 0, 0],
+                behaviorModules: ["Menus"],
             }
         },
         {
@@ -287,7 +289,7 @@ export function init(Constants) {
         {
             card: {
                 name: "About Physics",
-                translation: rotateTo([0, 0, 0], -12, 3*Math.PI/8+Math.PI/2), //[-5, 2.1, -7.963],
+                translation: rotateTo([0, 0.5, 0], -12, 3*Math.PI/8+Math.PI/2), //[-5, 2.1, -7.963],
                 scale: [4, 4, 4],
                 rotation: [0, 3*Math.PI/8+Math.PI/2, 0],
                 layers: ["pointer"],
@@ -297,7 +299,7 @@ export function init(Constants) {
                 frameColor: 16777215,
                 fullBright: true,
                 modelType: "pdf",
-                pdfLocation: "./assets/PDF/Mythos Readme.pdf",
+                pdfLocation: "./assets/PDF/Physics Readme.pdf",
                 shadow: true,
                 singleSided: true,
                 type: "2d",
