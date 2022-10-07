@@ -4,17 +4,17 @@ class LightPawn {
         let trm = this.service("ThreeRenderManager");
         let scene =  trm.scene;
         let camera = trm.camera;
-       // let group = this.shape;
+        let group = this.shape;
 
         this.removeLights();
         this.lights = [];
 
         this.setupCSM(scene, camera, Microverse.THREE);
-/*
+
         const ambient = new Microverse.THREE.AmbientLight( 0xffffff, .5 );
         group.add(ambient);
         this.lights.push(ambient);
-*/
+
         this.constructBackground(this.actor._cardData);
 
         let moduleName = this._behavior.module.externalName;
@@ -90,20 +90,19 @@ class LightPawn {
             this.csm = null;
         }
 
-        let dir = new THREE.Vector3(-1,-1,1).normalize();
+        let dir = new THREE.Vector3(-2,-2,-0.5);
         this.csm = new THREE.CSM({
             fade: true,
             far: camera.far,
             maxFar: 1000,
-            cascades: 4,
-            shadowMapSize: 4096,
+            cascades: 3,
+            shadowMapSize: 2048,
             shadowbias: 0.00025,
             lightDirection: dir,
             camera: camera,
             parent: scene,
-            lightIntensity: 0.5,
+            lightIntensity: 0.6,
             lightFar: 1000,
-            lightNear: 1,
             mode: "practical"
         });
         this.csm.update();
