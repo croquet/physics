@@ -21,8 +21,8 @@ class SpinActor {
     doSpin() {
         if(this.isSpinning) {
             let r = Microverse.q_multiply(this.rotation, this.qSpin);
-            this.rotateTo();
-            this.set({rotation: r}),
+            this.rotateTo(r);
+            this.set({rotation: r});
             this.future(50).doSpin();
         }
     }
@@ -31,8 +31,10 @@ class SpinActor {
         this.isSpinning = false;
     }
 
-    newAngle(newAngle) {
-        this.publish("scope", "newAngle", newAngle);
+    newAngle(newRot) {
+        // this.publish("scope", "newAngle", newAngle);
+        this.rotateTo(newRot);
+        this.set({rotation: newRot});
     }
 
     teardown() {
@@ -98,8 +100,8 @@ class SpinPawn {
         this.moveBuffer.push(p3d.xy);
         this.deltaAngle = (p3d.xy[0] - this._startDrag[0]) / 2 / 180 * Math.PI;
         let newRot = Microverse.q_multiply(this._baseRotation, Microverse.q_euler(0, this.deltaAngle, 0));
-        this.rotateTo(newRot);
-        this.say("newAngle", this.deltaAngle);
+        // this.rotateTo(newRot);
+        this.say("newAngle", newRot);
         this.say("focus", this.viewId);
         if (this.moveBuffer.length >= 3) {
             setTimeout(() => this.shiftMoveBuffer(), 100);
