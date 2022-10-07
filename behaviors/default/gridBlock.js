@@ -37,12 +37,12 @@ class GridBlockPawn {
     }
 
     constructBlock(){
+        if (this.gridBlock) {this.gridBlock.removeFromParent();}
         const THREE = Microverse.THREE;
- 
         let size = this.actor._cardData.blockSize;
-        var geometry = new THREE.BoxGeometry( ...size );
+        let geometry = new THREE.BoxGeometry( ...size );
         let [x,y,z] = [...size];
-        var materials = [
+        let materials = [
             new THREE.MeshStandardMaterial({map:this.setGrid(z,y), color: 0x808080, side: THREE.FrontSide}),
             new THREE.MeshStandardMaterial({map:this.setGrid(z,y), color: 0x808080, side: THREE.FrontSide}),
             new THREE.MeshStandardMaterial({map:this.setGrid(x,z), color: 0x808080, side: THREE.FrontSide}),
@@ -50,15 +50,17 @@ class GridBlockPawn {
             new THREE.MeshStandardMaterial({map:this.setGrid(x,y), color: 0x808080, side: THREE.FrontSide}),
             new THREE.MeshStandardMaterial({map:this.setGrid(x,y), color: 0x808080, side: THREE.FrontSide}),
         ];
-    
+
         this.gridBlock = new THREE.Mesh( geometry, materials );
         this.gridBlock.receiveShadow = true;
         this.gridBlock.castShadow = true;
         console.log(this.gridBlock)
         console.log(size)
         this.shape.add(this.gridBlock);
+        if (this.actor.layers.indexOf('walk') >= 0) {
+            this.constructCollider(this.gridBlock);
+        }
     }
-
 }
 
 export default {
@@ -84,3 +86,5 @@ texture.repeat.set( size[0], size[2] );
 let pGeometry = new THREE.BoxGeometry(...size);
 let pMaterial = new THREE.MeshStandardMaterial({map:texture, color: color, side: THREE.FrontSide});
 */
+
+/* globals Microverse */
