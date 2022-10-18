@@ -33,7 +33,7 @@ export function init(Constants) {
 
     Constants.UserBehaviorDirectory = "behaviors/default";
     Constants.UserBehaviorModules = [
-        "lights.js", "cascade.js", "earth.js", "gridBlock.js", "gridSphere.js", "pool.js", "spin.js", 
+        "lights.js", "cascade.js", "earth.js", "gridBlock.js", "gridSphere.js", "pool.js", "spin.js",
         "urlLink.js", "replaceWorld.js", "menus.js"
     ];
 
@@ -232,7 +232,7 @@ export function init(Constants) {
                 name: "Gallery Card",
                 behaviorModules: ["ReplaceWorld"],
                 replaceWorldTargetURL: "https://croquet.github.io/gallery",
-                replaceWorldOverrideOrigin: "(.*\.)?croquet.(io|dev)$",
+                replaceWorldPreserveOrigin: "(.*\.)?croquet.(io|dev)$",
                 translation: rotateTo([0, 0, 0], -12, Math.PI/8+Math.PI/2),
                 //    translation: [4.440892098500626e-16, 2.5357677795120512, -7.9631457611584615],
                 //rotation: [0, Math.PI / 2, 0],
@@ -256,7 +256,7 @@ export function init(Constants) {
                 translation: rotateTo([0, 0, 0], -12, 2*Math.PI/8+Math.PI/2),
                 behaviorModules: ["ReplaceWorld"],
                 replaceWorldTargetURL: "https://croquet.github.io/mythos",
-                replaceWorldOverrideOrigin: "(.*\.)?croquet.(io|dev)$",
+                replaceWorldPreserveOrigin: "(.*\.)?croquet.(io|dev)$",
                 rotation: [0, 2*Math.PI/8+Math.PI/2, 0],
                 layers: ["pointer"],
                 scale: [4, 4, 4],
