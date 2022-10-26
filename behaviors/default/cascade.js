@@ -274,14 +274,14 @@ class SprayActor {
 
         let t = this.translation;
         let r = Math.random() * Math.PI * 2;
-        let x = Math.cos(r) * 0.016 * (Math.random() * 0.6 + 0.5);
-        let z = Math.sin(r) * 0.016 * (Math.random() * 0.6 + 0.5);
+        let x = Math.cos(r) * 0.014 * (Math.random() * 0.5 + 0.5);
+        let z = Math.sin(r) * 0.014 * (Math.random() * 0.5 + 0.5);
         const initTr = [t[0] + x * 2, t[1] + 0.3, t[2] + z * 2];
 
         let shape;
         let size;
         let density;
-        let launchSpeed = 0.09;
+        let launchSpeed = 0.085;
         let dice = Math.random();
         let color = this.randomColor();
 
