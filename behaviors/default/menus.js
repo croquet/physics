@@ -10,7 +10,7 @@ class MenuPawn {
     setup(){
         if(this.menuItems)this.teardown();
         this.menuItems = [];
-        this.installMenu("Code on Github", "./assets/images/github.png", ()=>this.linkTo("https://github.com/croquet/physics"));
+        this.installMenu("Source Code", "./assets/images/github.png", ()=>this.linkTo("https://github.com/croquet/physics"));
     }
 
     linkTo(url) {
@@ -26,7 +26,7 @@ class MenuPawn {
         let menu = document.body.querySelector("#worldMenu");
         if (menu) {
             let menuItemDiv = document.createElement("div");
-            menuItemDiv.innerHTML = 
+            menuItemDiv.innerHTML =
                 `<div id="worldMenu-foo" class="menu-label menu-item">
                 <div class="menu-icon"></div>
                 <span class="menu-label-text">${menuText}</span>
@@ -41,7 +41,7 @@ class MenuPawn {
             menu.appendChild(menuItem);
 
             this.menuItems.push(menuItem); // needs to be an array
-        }   
+        }
     }
 
     teardown() {
