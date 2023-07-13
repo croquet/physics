@@ -6,6 +6,10 @@ class LightPawn {
         let camera = trm.camera;
         let group = this.shape;
 
+        if (this.actor._cardData.toneMappingExposure !== undefined) {
+            trm.renderer.toneMappingExposure = this.actor._cardData.toneMappingExposure;
+        }
+
         this.removeLights();
         this.lights = [];
 

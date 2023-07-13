@@ -62,6 +62,7 @@ export function init(Constants) {
                 dataLocation: "./assets/sky/aboveClouds.jpg",
                 fileName: "/aboveClouds.jpg",
                 dataType: "jpg",
+                toneMappingExposure: 1.2,
             }
         },
 
