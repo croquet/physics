@@ -43,12 +43,12 @@ class GridBlockPawn {
         let geometry = new THREE.BoxGeometry( ...size );
         let [x,y,z] = [...size];
         let materials = [
-            new THREE.MeshStandardMaterial({map:this.setGrid(z,y), color: 0x808080, side: THREE.FrontSide}),
-            new THREE.MeshStandardMaterial({map:this.setGrid(z,y), color: 0x808080, side: THREE.FrontSide}),
-            new THREE.MeshStandardMaterial({map:this.setGrid(x,z), color: 0x808080, side: THREE.FrontSide}),
-            new THREE.MeshStandardMaterial({map:this.setGrid(x,z), color: 0x808080, side: THREE.FrontSide}),
-            new THREE.MeshStandardMaterial({map:this.setGrid(x,y), color: 0x808080, side: THREE.FrontSide}),
-            new THREE.MeshStandardMaterial({map:this.setGrid(x,y), color: 0x808080, side: THREE.FrontSide}),
+            new THREE.MeshStandardMaterial({map:this.setGrid(z,y), color: 0xd0d0d0, side: THREE.FrontSide}),
+            new THREE.MeshStandardMaterial({map:this.setGrid(z,y), color: 0xd0d0d0, side: THREE.FrontSide}),
+            new THREE.MeshStandardMaterial({map:this.setGrid(x,z), color: 0xd0d0d0, side: THREE.FrontSide}),
+            new THREE.MeshStandardMaterial({map:this.setGrid(x,z), color: 0xd0d0d0, side: THREE.FrontSide}),
+            new THREE.MeshStandardMaterial({map:this.setGrid(x,y), color: 0xd0d0d0, side: THREE.FrontSide}),
+            new THREE.MeshStandardMaterial({map:this.setGrid(x,y), color: 0xd0d0d0, side: THREE.FrontSide}),
         ];
 
         this.gridBlock = new THREE.Mesh( geometry, materials );

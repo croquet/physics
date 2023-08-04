@@ -48,7 +48,7 @@ export function init(Constants) {
                 translation:[0, -1.7, 0],
                 placeholder: true,
                 placeholderSize: [400, 0.1, 400],
-                placeholderColor: 0x808080,
+                placeholderColor: 0xf0f0f0,
                 placeholderOffset: [0, 0, 0],
                 behaviorModules: ["Menus"],
             }

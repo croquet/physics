@@ -19,12 +19,20 @@ class PDFActor {
 
         this.listen("setCardData", "cardDataUpdated");
         this.subscribe(this.id, "buttonPageChange", "changePage");
+        this.subscribe(this.sessionId, "resetAppState", "resetAppState");
     }
 
     viewJoined(_viewId) {
     }
 
     viewExited(_viewId) {
+    }
+
+    resetAppState() {
+        this.scrollState = { page: 1, percent: 0 };
+        this.scrollState.upAvailable = false;
+        this.scrollState.downAvailable = true;
+        this.publish(this.id, "updateButtons");
     }
 
     addButtons() {
@@ -614,8 +622,10 @@ class PDFPawn {
         const cardWidth = this.cardWidth = width * cardScale;
         const cardHeight = this.cardHeight = height * cardScale;
         const obj = this.shape.children.find((o) => o.name === "2d");
-        obj.geometry.dispose();
-        obj.geometry = this.squareCornerGeometry(cardWidth, cardHeight, depth);
+        if (obj) {
+            obj.geometry.dispose();
+            obj.geometry = this.squareCornerGeometry(cardWidth, cardHeight, depth);
+        }
 
         this.pageGap = cardHeight * gapPercent / 100; // three.js units between displayed pages
         if (tellActor) this.say("setCardData", { height: cardHeight, width: cardWidth });
@@ -827,8 +837,6 @@ class PDFButtonPawn {
         hittableMesh.rotation.x = Math.PI / 2;
         hittableMesh.position.z = -depth / 2;
         this.shape.add(hittableMesh);
-        hittableMesh._baseRaycast = hittableMesh.raycast;
-        hittableMesh.raycast = (...args) => this.shape.visible ? hittableMesh._baseRaycast(...args) : false;
         this.shape.visible = false; // until placed
         this.updateState();
     }
@@ -842,7 +850,10 @@ class PDFButtonPawn {
         this.shape.visible = true;
         const wasEnabled = this.enabled;
         this.enabled = buttonState[this.actor.buttonName];
-        if (!wasVisible || this.enabled !== wasEnabled) this.setColor();
+        if (!wasVisible || this.enabled !== wasEnabled) {
+            this.service("RenderManager").dirtyLayer("pointer");
+            this.setColor();
+        }
     }
 
     setColor() {
