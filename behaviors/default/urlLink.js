@@ -11,7 +11,6 @@ class URLPawn {
     }
 
     tap() {
-        console.log("Did I tap tap tap tap?");
         let div = document.createElement("div");
         let url = this.actor._cardData.cardURL || "https://croquet.io"; // default to Croquet
         console.log(url);
@@ -24,7 +23,6 @@ class URLPawn {
     enter(){
         let hilite = this.actor._cardData.cardHilite || 0xffaaa;
         this.doHilite(hilite); // hilite in yellow
-        console.log(this.actor._cardData.cardURL);
     }
 
     leave(){
@@ -32,7 +30,6 @@ class URLPawn {
     }
 
     move(){
-        console.log("moving")
     }
 
     doHilite(hval){
