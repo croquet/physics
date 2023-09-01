@@ -3,14 +3,22 @@
 // Croquet Microverse
 // A variable sized sphere object that aligns to a grid 1 to 1
 
+// the following import statement is solely for the type checking and
+// autocompletion features in IDE.  A Behavior cannot inherit from
+// another behavior or a base class but can use the methods and
+// properties of the card to which it is installed.
+// The prototype classes ActorBehavior and PawnBehavior provide
+// the features defined at the card object.
 
-class GridSphereActor {
+import {ActorBehavior, PawnBehavior} from "../PrototypeBehavior";
+
+class GridSphereActor extends ActorBehavior {
     setup() {
 
     }
 }
 
-class GridSpherePawn {
+class GridSpherePawn extends PawnBehavior {
     setup() {
         this.gridTexture = this.loadGrid();
         this.constructSphere();

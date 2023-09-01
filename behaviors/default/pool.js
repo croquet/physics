@@ -3,8 +3,16 @@
 // Croquet Microverse
 // A variable sized rectangular pool of water
 
+// the following import statement is solely for the type checking and
+// autocompletion features in IDE.  A Behavior cannot inherit from
+// another behavior or a base class but can use the methods and
+// properties of the card to which it is installed.
+// The prototype classes ActorBehavior and PawnBehavior provide
+// the features defined at the card object.
 
-class PoolActor {
+import {ActorBehavior, PawnBehavior} from "../PrototypeBehavior";
+
+class PoolActor extends ActorBehavior {
     setup() {
         this.future(1000).update();
     }
@@ -15,7 +23,7 @@ class PoolActor {
     }
 }
 
-class PoolPawn {
+class PoolPawn extends PawnBehavior {
     setup() {
         this.constructPool();
         this.listen("updatePool", this.updatePool);
